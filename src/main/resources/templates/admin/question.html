@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>bbs后台管理</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style>
+        a{color:#292b2c}
+        a:hover{color:crimson}
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+        .b1
+        {
+            text-shadow: -1px -1px #dca7a7,1px 1px #333
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <div style="float: left;width: 75%">
+        <h1 style="color: darkred" class="b1">Daniel Wu BBS</h1>
+        <hr>
+    </div>
+    <div style="float: left" >
+        <br>
+        <div id="date" style="color: darkred;font-size: 18px;text-align: center;margin-left: 40px"></div>
+        <div id="time" style="color: darkred;font-size: 14px;text-align: center;margin-left: 40px"></div>
+    </div>
+</div>
+<div class="container">
+    <ul class="nav nav-tabs " >
+        <li><a href="/admin/index" ><b>用户管理</b></a></li>
+        <li><a href="/admin/section"><b>板块管理</b></a></li>
+        <li><a href="/admin/topic" ><b>帖子管理</b></a></li>
+        <li class="active"><a href="/admin/question"><b>问答管理</b></a></li>
+        <li><a href="/admin/demand"><b>需求管理</b></a></li>
+        <li><a href="/admin/supermaster"><b>管理员管理</b></a></li>
+        <li><a href="/admin/outlogin"><b>退出登录</b></a></li>
+    </ul>
+</div>
+<div class="container">
+    <div class="row" style="margin-bottom: 15px">
+        <br>
+        <div class="col-md-4">
+            <a href="/admin/question/addQuestion" target="view_window" style="margin-left: 1050px"><input type="button" value="添加" class="btn btn-danger" id="button-add"></a>
+        </div>
+    </div>
+
+
+    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+        <tr>
+            <th>问答id</th>
+            <th>一级分类id</th>
+            <th>二级分类id</th>
+            <th>作者id</th>
+            <th>问答名称</th>
+            <th>问答内容</th>
+            <th>点击量</th>
+            <th>回复量</th>
+            <th>点赞量</th>
+            <th>时间</th>
+            <th>是否加精</th>
+            <th>是否置顶</th>
+            <th>是否热门</th>
+            <th>问答分数</th>
+            <th>管理评论</th>
+            <th>管理回复</th>
+            <th>修改信息</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="question : ${questionList}">
+            <td th:text="${question.getQid()}"></td>
+            <td th:text="${question.getQmsid()}">姣姣爱哦</td>
+            <td th:text="${question.getQsid()}">123</td>
+            <td th:text="${question.getQuid()}">1225732</td>
+            <td th:text="${question.getQname()}">2138572</td>
+            <td th:text="${question.getQcontents()}">石佛寺</td>
+            <td th:text="${question.getQclickcount()}">所发生离开的复苏</td>
+            <td th:text="${question.getQreplycount()}">男</td>
+            <td th:text="${question.getQlikecount()}">111</td>
+            <td th:text="${question.getQtime()}">0</td>
+            <td th:text="${question.isQstate()}">是</td>
+            <td th:text="${question.isQtop()}">shi</td>
+            <td th:text="${question.isQhot()}">是</td>
+            <td th:text="${question.getQscore()}">是</td>
+           <!-- <td th:text="${question.getQreplybetteruid()}">1</td>-->
+            <td><a href="#" th:href="@{/admin/question/ctt/{orderId}(orderId=${question.getQid()})}" target="view_window">管理评论</a></td>
+            <td><a href="#" th:href="@{/admin/question/rtt/{orderId}(orderId=${question.getQid()})}" target="view_window">管理回复</a></td>
+            <td><a href="#" th:href="@{/admin/question/update/{orderId}(orderId=${question.getQid()})}" target="view_window">修改信息</a></td>
+            <td><a href="#" th:name="${question.getQid()}" class="deleteqid">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
+<script th:src="@{/js/background.js}"></script>
+<!--<script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+<script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>-->
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').dataTable();
+        });
+        $(".deleteid").on('click', function(){
+            var id = $(this).attr("name");
+            var url="/admin/user/delete";
+            var data={uid:id};
+            $.post(url,data,function(result){
+                if (result=="0") {
+                    dialog.error("删除失败");
+                }
+                if (result=="1") {
+                    dialog.success("删除成功","index");
+                }
+            },"json");
+        });
+    </script>
+    <script>
+        function getTime() {
+            var date = new Date();
+            var str;
+            document.getElementById("date").innerHTML=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日" ;
+            if(date.getHours()>12){
+                str="pm";
+                var hour = date.getHours()-12;
+            }
+            else{
+                str="am";
+                var hour = date.getHours();
+            }
+            document.getElementById("time").innerHTML = hour + ":" + date.getMinutes() + ":" + date.getSeconds() +" "+str;
+        }
+        window.setInterval(getTime,1000);  //间隔是1000ms，重复执行myClock函数中的内容。
+    </script>
+<!--<script>
+    var canvas = document.getElementById("canvas");
+    //设置画板
+    var ctx = canvas.getContext("2d");
+    var s = window.screen;
+    var w = s.width;
+    var h = s.height;
+    canvas.width = w;
+    canvas.height = h;
+    var points = [];
+    function getPoint() {
+        var point = new Object();
+        point.x = Math.floor(Math.random()*w);
+        point.y = Math.floor(Math.random()*h);
+        point.r = Math.random()*3;
+        point.ratex = Math.floor(Math.random()*3);
+        point.ratey = Math.floor(Math.random()*3);
+        return point;
+    }
+    function drawPoints() {
+        for(var i=0;i<points.length;i++){
+            var point = points[i];
+            if(point.x>=0&&point.x<=w&&point.y>=0&&point.y<=h){
+                ctx.fillStyle = "#e2bcbf";
+                ctx.beginPath();
+                ctx.arc(point.x,point.y,point.r,0,Math.PI*2,true);
+   /*             ctx.stroke();*/
+                ctx.fill();
+                point.x += point.ratex;
+                point.y += point.ratey;
+                points[i]=point;
+            }
+            else{
+                points[i]=getPoint();
+            }
+        }
+    }
+    function getDis(point1,point2) {
+        var x1 = point1.x;
+        var y1 = point1.y;
+        var x2 = point2.x;
+        var y2 = point2.y;
+        return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    }
+    function drawLines() {
+        for(var i=0;i<points.length;i++){
+            for(var j = 0;j<points.length;j++){
+                var dis = getDis(points[i],points[j]);
+                if(dis<150){
+                    ctx.strokeStyle = "#d4cfca";
+                    ctx.lineWidth = 0.8 - dis/150;
+                    ctx.beginPath();
+                    ctx.moveTo(points[i].x,points[i].y);
+                    ctx.lineTo(points[j].x,points[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    for(var i=0;i<100;i++){
+        points[i] = getPoint();
+    }
+    function draw() {
+        ctx.clearRect(0,0,w,h);
+        drawPoints();
+        drawLines();
+    }
+    window.requestAnimationFrame(draw);
+</script>-->
+
+    <!-- CUSTOM SCRIPTS -->
+<!--    <script th:src="@{/bootstrap/custom.js}"></script>-->
+</body>
+</html>

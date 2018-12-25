@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color: darkred;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        },
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form method="POST" id="form" class="form-horizontal" action="/admin/topic/updateTopic">
+             <input type="text" name="tid"  style="display:none" th:value="${topic.getTid()}">
+            <div id="form-group">
+                <label>帖子名称名:</label>
+                <input type="text" name="tname" class="form-control " th:value="${topic.getTname()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>一级分类id:</label>
+                <input type="text" name="tmsid" class="form-control" th:value="${topic.getTmsid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>二级分类id：</label>
+                <input type="text" name="tsid" class="form-control" th:value="${topic.getTsid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>作者id：</label>
+                <input type="text" name="tuid" class="form-control" th:value="${topic.getTuid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>帖子内容：</label>
+                <input type="text" name="tcontents" class="form-control" th:value="${topic.getTcontents()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>点击量：</label>
+                <input type="text" name="tclickcount" class="form-control" th:value="${topic.getTclickcount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>回复量：</label>
+                <input type="text" name="treplycount" class="form-control" th:value="${topic.getTreplycount()}"><br>
+            </div>
+           <div id="form-group form-inline">
+                <label>点赞量：</label>
+                <input type="text" name="tlikecount" class="form-control" th:value="${topic.getTlikecount()}"><br>
+            </div>
+-->         <div id="form-group form-inline">
+                <label class="checkbox-inline">
+                    <button class="btn btn-primary"><input type="radio" value="true" name="TopicState">该贴加精&nbsp;</button>
+                    <button class="btn btn-primary"><input type="radio" value="false" name="TopicState" checked="checked">取消加精</button>
+                </label><br>
+            </div>
+            <div id="form-group form-inline">
+                <label class="checkbox-inline">
+                    <button class="btn btn-primary"><input type="radio" value="true" name="TopicTop">该贴置顶&nbsp;</button>
+                    <button class="btn btn-primary"><input type="radio" value="false" name="TopicTop" checked="checked">取消置顶</button>
+                </label><br>
+            </div>
+            <input type="submit" value="提交" style="background-color: darkred; margin-top: 10px;" class="btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+</body>
+</html>

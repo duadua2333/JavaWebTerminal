@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>message</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="alert alert-warning" role="alert" th:text="${message}"></div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+</body>
+</html>
+

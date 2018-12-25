@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta http-equiv="pragma" content="no-cache" >
+	<meta charset="UTF-8">
+	<title>bbs.com</title>
+	<link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="D:/wamp/www/blog/Public/css/bootstrap.css">
+<style type="text/css">
+	body{
+		background-color: rgba(7, 0, 226, 0.06);
+	}
+	.bbs_bar{
+		background-color: darkred;
+	}
+	.bbs_bar {
+		height: 50px;
+	}
+	.bbs_bar3{
+		color:#aaa;
+		padding: 10px 0 0 30px;
+	}
+	.bbs_bar4{
+		color:#aaa;
+		padding: 10px 0 0 0px;
+	}
+	.bbs_bar1{
+		color: white;
+		font-size: 18px;
+		padding:15px 0 0 0px;
+	}
+	.bbs_bar2{
+		color:white;
+		padding: 17px 0 0 30px;
+	}
+		.div_1{
+		margin: 2px 100px 0 700px;
+	}
+	.container{
+		background-color: white;margin:5px 0px 0 200px;width: 970px;
+	}
+	.tieziimg{width: 180px;height: 180px}
+	.yonghuming{font-size: 26px;margin: 30px 0 15px 15px ;}
+	.hangye span{color: #E1534A; margin: 0 30px 0px 20px;}
+	.gerenjianjie{color: #808080;margin: 20px 0 0 10px;}
+	.henxian{width: 650px; margin: 20px 0 0 10px;}
+	.bankuai{float: right;}
+	.bankuai a{ margin: 0 10px 10 10px; }
+	.guanzhu{margin: 10px 15px 10px 45px;}
+	.fensi{margin: 10px 15px 0 15px;}
+	.container1{background-color: white;margin:5px 0px 0 200px;width: 970px;height: 300px;}
+	.imgsy{
+		display:block;
+		padding: 0;
+		margin:5px 0px 0 200px;
+	}
+	.tieziimg{width: 200px;height: 200px}
+	.yonghuming{font-size: 26px;margin: 30px 0 15px 15px ;}
+	.hangye span{color: #E1534A; margin: 0 30px 0px 20px;}
+	.gerenjianjie{color: #808080;margin: 20px 0 0 10px;}
+	.henxian{width: 650px; margin: 20px 0 0 10px;}
+	.bankuai{float: right;}
+	.bankuai a{ margin: 0 10px 10 10px; }
+	.guanzhu{margin: 10px 15px 10px 45px;}
+	.fensi{margin: 10px 15px 0 15px;}
+	.container1{background-color: white;margin:5px 0px 0 200px;width: 970px;height: 300px;}
+	.bstyle {
+		background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+		height: 100vh;
+		overflow: hidden;
+		font-family: 'Anton', sans-serif;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.night {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		-webkit-transform: rotateZ(45deg);
+		transform: rotateZ(45deg);
+		-webkit-animation: sky 200000ms linear infinite;
+		animation: sky 200000ms linear infinite;
+	}
+
+	.shooting_star {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		height: 2px;
+		background: linear-gradient(-45deg, darkgrey, rgba(0, 0, 255, 0));
+		border-radius: 999px;
+		-webkit-filter: drop-shadow(0 0 6px darkgrey);
+		filter: drop-shadow(0 0 6px darkgrey);
+		-webkit-animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+		animation: tail 3000ms ease-in-out infinite, shooting 3000ms ease-in-out infinite;
+		opacity: 0.45;
+	}
+	.shooting_star::before, .shooting_star::after {
+		content: '';
+		position: absolute;
+		top: calc(50% - 1px);
+		right: 0;
+		height: 2px;
+		background: linear-gradient(-45deg, rgba(0, 0, 255, 0), darkgrey, rgba(0, 0, 255, 0));
+		-webkit-transform: translateX(50%) rotateZ(45deg);
+		transform: translateX(50%) rotateZ(45deg);
+		border-radius: 100%;
+		-webkit-animation: shining 3000ms ease-in-out infinite;
+		animation: shining 3000ms ease-in-out infinite;
+		opacity: 0.65;
+	}
+	.shooting_star::after {
+		-webkit-transform: translateX(50%) rotateZ(-45deg);
+		transform: translateX(50%) rotateZ(-45deg);
+	}
+	.shooting_star:nth-child(1) {
+		top: calc(50% - 185px);
+		left: calc(50% - 150px);
+		-webkit-animation-delay: 8971ms;
+		animation-delay: 8971ms;
+	}
+	.shooting_star:nth-child(1)::before, .shooting_star:nth-child(1)::after, .shooting_star:nth-child(1)::after {
+		-webkit-animation-delay: 8971ms;
+		animation-delay: 8971ms;
+	}
+	.shooting_star:nth-child(2) {
+		top: calc(50% - 50px);
+		left: calc(50% - 179px);
+		-webkit-animation-delay: 9256ms;
+		animation-delay: 9256ms;
+	}
+	.shooting_star:nth-child(2)::before, .shooting_star:nth-child(2)::after, .shooting_star:nth-child(2)::after {
+		-webkit-animation-delay: 9256ms;
+		animation-delay: 9256ms;
+	}
+	.shooting_star:nth-child(3) {
+		top: calc(50% - -146px);
+		left: calc(50% - 135px);
+		-webkit-animation-delay: 8700ms;
+		animation-delay: 8700ms;
+	}
+	.shooting_star:nth-child(3)::before, .shooting_star:nth-child(3)::after, .shooting_star:nth-child(3)::after {
+		-webkit-animation-delay: 8700ms;
+		animation-delay: 8700ms;
+	}
+	.shooting_star:nth-child(4) {
+		top: calc(50% - -77px);
+		left: calc(50% - 157px);
+		-webkit-animation-delay: 3147ms;
+		animation-delay: 3147ms;
+	}
+	.shooting_star:nth-child(4)::before, .shooting_star:nth-child(4)::after, .shooting_star:nth-child(4)::after {
+		-webkit-animation-delay: 3147ms;
+		animation-delay: 3147ms;
+	}
+	.shooting_star:nth-child(5) {
+		top: calc(50% - -183px);
+		left: calc(50% - 8px);
+		-webkit-animation-delay: 6588ms;
+		animation-delay: 6588ms;
+	}
+	.shooting_star:nth-child(5)::before, .shooting_star:nth-child(5)::after, .shooting_star:nth-child(5)::after {
+		-webkit-animation-delay: 6588ms;
+		animation-delay: 6588ms;
+	}
+	.shooting_star:nth-child(6) {
+		top: calc(50% - -29px);
+		left: calc(50% - 195px);
+		-webkit-animation-delay: 8009ms;
+		animation-delay: 8009ms;
+	}
+	.shooting_star:nth-child(6)::before, .shooting_star:nth-child(6)::after, .shooting_star:nth-child(6)::after {
+		-webkit-animation-delay: 8009ms;
+		animation-delay: 8009ms;
+	}
+	.shooting_star:nth-child(7) {
+		top: calc(50% - 95px);
+		left: calc(50% - 69px);
+		-webkit-animation-delay: 5420ms;
+		animation-delay: 5420ms;
+	}
+	.shooting_star:nth-child(7)::before, .shooting_star:nth-child(7)::after, .shooting_star:nth-child(7)::after {
+		-webkit-animation-delay: 5420ms;
+		animation-delay: 5420ms;
+	}
+	.shooting_star:nth-child(8) {
+		top: calc(50% - -59px);
+		left: calc(50% - 70px);
+		-webkit-animation-delay: 9378ms;
+		animation-delay: 9378ms;
+	}
+	.shooting_star:nth-child(8)::before, .shooting_star:nth-child(8)::after, .shooting_star:nth-child(8)::after {
+		-webkit-animation-delay: 9378ms;
+		animation-delay: 9378ms;
+	}
+	.shooting_star:nth-child(9) {
+		top: calc(50% - 76px);
+		left: calc(50% - 238px);
+		-webkit-animation-delay: 2845ms;
+		animation-delay: 2845ms;
+	}
+	.shooting_star:nth-child(9)::before, .shooting_star:nth-child(9)::after, .shooting_star:nth-child(9)::after {
+		-webkit-animation-delay: 2845ms;
+		animation-delay: 2845ms;
+	}
+	.shooting_star:nth-child(10) {
+		top: calc(50% - 83px);
+		left: calc(50% - 6px);
+		-webkit-animation-delay: 5205ms;
+		animation-delay: 5205ms;
+	}
+	.shooting_star:nth-child(10)::before, .shooting_star:nth-child(10)::after, .shooting_star:nth-child(10)::after {
+		-webkit-animation-delay: 5205ms;
+		animation-delay: 5205ms;
+	}
+	.shooting_star:nth-child(11) {
+		top: calc(50% - -137px);
+		left: calc(50% - 267px);
+		-webkit-animation-delay: 808ms;
+		animation-delay: 808ms;
+	}
+	.shooting_star:nth-child(11)::before, .shooting_star:nth-child(11)::after, .shooting_star:nth-child(11)::after {
+		-webkit-animation-delay: 808ms;
+		animation-delay: 808ms;
+	}
+	.shooting_star:nth-child(12) {
+		top: calc(50% - 12px);
+		left: calc(50% - 8px);
+		-webkit-animation-delay: 2406ms;
+		animation-delay: 2406ms;
+	}
+	.shooting_star:nth-child(12)::before, .shooting_star:nth-child(12)::after, .shooting_star:nth-child(12)::after {
+		-webkit-animation-delay: 2406ms;
+		animation-delay: 2406ms;
+	}
+	.shooting_star:nth-child(13) {
+		top: calc(50% - 148px);
+		left: calc(50% - 47px);
+		-webkit-animation-delay: 7566ms;
+		animation-delay: 7566ms;
+	}
+	.shooting_star:nth-child(13)::before, .shooting_star:nth-child(13)::after, .shooting_star:nth-child(13)::after {
+		-webkit-animation-delay: 7566ms;
+		animation-delay: 7566ms;
+	}
+	.shooting_star:nth-child(14) {
+		top: calc(50% - -28px);
+		left: calc(50% - 75px);
+		-webkit-animation-delay: 7634ms;
+		animation-delay: 7634ms;
+	}
+	.shooting_star:nth-child(14)::before, .shooting_star:nth-child(14)::after, .shooting_star:nth-child(14)::after {
+		-webkit-animation-delay: 7634ms;
+		animation-delay: 7634ms;
+	}
+	.shooting_star:nth-child(15) {
+		top: calc(50% - -37px);
+		left: calc(50% - 203px);
+		-webkit-animation-delay: 7743ms;
+		animation-delay: 7743ms;
+	}
+	.shooting_star:nth-child(15)::before, .shooting_star:nth-child(15)::after, .shooting_star:nth-child(15)::after {
+		-webkit-animation-delay: 7743ms;
+		animation-delay: 7743ms;
+	}
+	.shooting_star:nth-child(16) {
+		top: calc(50% - 41px);
+		left: calc(50% - 256px);
+		-webkit-animation-delay: 2888ms;
+		animation-delay: 2888ms;
+	}
+	.shooting_star:nth-child(16)::before, .shooting_star:nth-child(16)::after, .shooting_star:nth-child(16)::after {
+		-webkit-animation-delay: 2888ms;
+		animation-delay: 2888ms;
+	}
+	.shooting_star:nth-child(17) {
+		top: calc(50% - -35px);
+		left: calc(50% - 121px);
+		-webkit-animation-delay: 5864ms;
+		animation-delay: 5864ms;
+	}
+	.shooting_star:nth-child(17)::before, .shooting_star:nth-child(17)::after, .shooting_star:nth-child(17)::after {
+		-webkit-animation-delay: 5864ms;
+		animation-delay: 5864ms;
+	}
+	.shooting_star:nth-child(18) {
+		top: calc(50% - 73px);
+		left: calc(50% - 225px);
+		-webkit-animation-delay: 7883ms;
+		animation-delay: 7883ms;
+	}
+	.shooting_star:nth-child(18)::before, .shooting_star:nth-child(18)::after, .shooting_star:nth-child(18)::after {
+		-webkit-animation-delay: 7883ms;
+		animation-delay: 7883ms;
+	}
+	.shooting_star:nth-child(19) {
+		top: calc(50% - -69px);
+		left: calc(50% - 47px);
+		-webkit-animation-delay: 3339ms;
+		animation-delay: 3339ms;
+	}
+	.shooting_star:nth-child(19)::before, .shooting_star:nth-child(19)::after, .shooting_star:nth-child(19)::after {
+		-webkit-animation-delay: 3339ms;
+		animation-delay: 3339ms;
+	}
+	.shooting_star:nth-child(20) {
+		top: calc(50% - 162px);
+		left: calc(50% - 129px);
+		-webkit-animation-delay: 7963ms;
+		animation-delay: 7963ms;
+	}
+	.shooting_star:nth-child(20)::before, .shooting_star:nth-child(20)::after, .shooting_star:nth-child(20)::after {
+		-webkit-animation-delay: 7963ms;
+		animation-delay: 7963ms;
+	}
+
+	@-webkit-keyframes tail {
+		0% {
+			width: 0;
+		}
+		30% {
+			width: 100px;
+		}
+		100% {
+			width: 0;
+		}
+	}
+
+	@keyframes tail {
+		0% {
+			width: 0;
+		}
+		30% {
+			width: 100px;
+		}
+		100% {
+			width: 0;
+		}
+	}
+	@-webkit-keyframes shining {
+		0% {
+			width: 0;
+		}
+		50% {
+			width: 30px;
+		}
+		100% {
+			width: 0;
+		}
+	}
+	@keyframes shining {
+		0% {
+			width: 0;
+		}
+		50% {
+			width: 30px;
+		}
+		100% {
+			width: 0;
+		}
+	}
+	@-webkit-keyframes shooting {
+		0% {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+		100% {
+			-webkit-transform: translateX(300px);
+			transform: translateX(300px);
+		}
+	}
+	@keyframes shooting {
+		0% {
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
+		}
+		100% {
+			-webkit-transform: translateX(300px);
+			transform: translateX(300px);
+		}
+	}
+	@-webkit-keyframes sky {
+		0% {
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+		100% {
+			-webkit-transform: rotate(405deg);
+			transform: rotate(405deg);
+		}
+	}
+	@keyframes sky {
+		0% {
+			-webkit-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+		100% {
+			-webkit-transform: rotate(405deg);
+			transform: rotate(405deg);
+		}
+	}
+</style>
+</head></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+	<div class="shooting_star"></div>
+</div>
+<!-- 这里写登陆行 -->
+<!--<div class="row bbs_bar">
+	<div class="col-md-1 col-md-offset-1 bbs_bar1">Ncubbs</div>
+	<div class="col-md-1 bbs_bar2">Hi~<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> </div>
+	<div class="col-md-1 col-md-offset-7 bbs_bar3" th:unless="${usernow}"><a href="/user/login" target="view_window">登录</a></div>
+	<div class="col-md-1 bbs_bar4"><a href="/user/sign" target="view_window"th:unless="${usernow}">注册</a></div>
+	<div class="col-md-2 col-md-offset-8 div_1" th:if="usernow">
+		<div th:if="${usernow}" class="dropdown">
+			<button  th:text="${usernow.getUname()}" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="/userCenter/person" target="view_blank">个人中心</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="/user/login" >退出登陆</a></li>
+			</ul>
+		</div>
+	</div>
+</div>-->
+<div class="row bbs_bar">
+	<div class="col-md-1 col-md-offset-1 bbs_bar1">Daniel Wu BBS</div>
+	<div class="col-md-1 bbs_bar2">欢迎~<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> </div>
+	<div class="col-md-2 col-md-offset-8 div_1">
+		<div class="dropdown">
+			<button  th:text="${usernow.getUname()}" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li><a href="/userCenter/person" target="view_blank">个人中心</a></li>
+				<li role="separator" class="divider"></li>
+				<li><a href="/user/login" >退出登陆</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+	<!-- 这里写 -->
+	<!-- 这里写 个人资料-->
+<img class="imgsy" width="970" src="https://liuouhuang.github.io/2018/11/01/%E6%B5%8B%E8%AF%95%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87/star3.jpg">
+<div class="container">
+<div class="media">
+  	<div class="media-left media-middle">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545498448209&di=08fb8a301ef17e0dea97a4d18f40d6b8&imgtype=0&src=http%3A%2F%2Fm.vstou.com%2Fupload%2Fimage%2F78%2F201511%2F1448238930844839.jpg" class="tieziimg">
+    <a href="myfollow">
+      <span class="guanzhu" >关注</span>
+    </a>
+		<a href="followme">
+			<span class="fensi">粉丝</span>
+		</a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading yonghuming" th:text="${User.getUname()}"></h4>
+    <p class="hangye"><span th:text="${User.getUjob()}"></span> |<span th:text="${User.getWorkspace()}"></span> |<span th:text="${User.getUemail()}"></span>|
+    <span th:text="${User.getUsex()}"></span>| <span th:text="${User.getPoint()}"></span>| <span th:text="${User.getUbirthday()}"></span>
+    </p>
+    <hr class="henxian">
+    <div><p class="gerenjianjie" th:text="${User.getUremark()}"></p></div>
+    <div class="bankuai">
+		<div th:if="${User.isUismsmaster()}">
+			<a href="sectionmanager">板块管理</a>
+		</div>
+	<a href="changepassword" class="zhuanghao">帐号设置</a>
+	<a href="changeinfo" class="xiugaiziliao">修改资料</a>
+</div>
+  </div>
+</div>
+</div>
+<div class="container1">
+    <ul class="nav nav-tabs ">
+        <li class="active"><a href="/userCenter/mytopic" >我的帖子</a></li>
+        <li><a href="myquestion" >我的问答</a></li>
+        <li><a href="mydemand">我的需求</a></li>
+    </ul>
+</div>
+
+<!-- contianer -->
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/bootstrap.min.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<!-- <script src="D:/wamp/www/blog/Public/js/dialog/layer.js"></script> -->
+<!-- <script src="D:/wamp/www/blog/Public/js/dialog.js"></script>
+<script srcv="D:/wamp/www/blog/Public/js/admin/common.js"></script> -->
+<!-- jquery要在自己写的js文件之前引入 -->
+</body>
+</html>

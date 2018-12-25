@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color: darkred;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form method="POST" id="form" class="form-horizontal" action="/admin/user/updateUser">
+             <input type="text" name="uid"  style="display:none" th:value="${user.getUid()}">
+
+            <div id="form-group">
+                <label>用户名:</label>
+                  <input type="text" name="uname" class="form-control " th:value="${user.getUname()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>密码:</label>
+                <input type="text" name="upassword" class="form-control" th:value="${user.getUpassword()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>生日：</label>
+                <input type="text" name="ubirthday" class="form-control" th:value="${user.getUbirthday()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>性别：</label>
+                <input type="text" name="sex" class="form-control" th:value="${user.getUsex()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>电话：</label>
+                <input type="text" name="uphone" class="form-control" th:value="${user.getUphone()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>邮箱：</label>
+                <input type="text" name="uemail" class="form-control" th:value="${user.getUemail()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>用户工作：</label>
+                <input type="text" name="ujob" class="form-control" th:value="${user.getUjob()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>工作地点：</label>
+                <input type="text" name="uworkspace" class="form-control" th:value="${user.getWorkspace()}"><br>
+            </div>
+            
+            <div id="form-group form-inline">
+                <label>积分：</label>
+                <input type="text" name="upoint" class="form-control" th:value="${user.getPoint()}"><br>
+
+            <input type="submit" value="提交" style="background-color: darkred" class="btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+</body>
+</html>

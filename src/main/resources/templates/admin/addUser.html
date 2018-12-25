@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+       <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+<style type="text/css">
+.loginform{
+margin:5% 25% 0 25%;
+}
+.logininput{
+height:43px;
+}
+.loginsubmit{
+width:450px;
+height:43px;
+}
+canvas{
+    position: absolute;
+    display: block;
+    left:0;
+    top:0;
+    background: white;
+    z-index: -1;
+}
+</style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <form method="POST" class="form-horizontal loginform" action="/admin/user/maddUser" >
+      <div class="form-group">
+        <label for="uid" class="col-sm-2 control-label">用户id:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control logininput"  name="uid" id="uid">
+        </div>
+      </div>
+  <div class="form-group">
+    <label for="uname" class="col-sm-2 control-label">用户名：</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control logininput" name="uname" id="uname" >
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="upassword" class="col-sm-2 control-label">密码：</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control logininput"  name="upassword" id="upassword">
+      </div>
+    </div>
+      <div class="form-group">
+        <label for="ubirthday" class="col-sm-2 control-label">生日：</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control logininput"  name="ubirthday" id="ubirthday">
+        </div>
+      </div>
+   <div class="form-group siginrabio">
+    <div class="col-sm-10" style="margin-left: 300px">
+	<label class="radio-inline" >
+	  <input type="radio" name="sex" id="inlineRadio1" value="0">女
+	</label>
+	<label class="radio-inline">
+    	<input type="radio" name="sex" id="inlineRadio2" value="1">男
+    </label>
+	</div>
+  </div>
+    <div class="form-group">
+    <label for="uphone" class="col-sm-2 control-label">电话：</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control logininput" name="uphone" id="uphone">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="uemail" class="col-sm-2 control-label">邮箱：</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control logininput" name="uemail" id="uemail">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="ujob" class="col-sm-2 control-label">用户工作：</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control logininput"  name="ujob" id="ujob">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="uworkspace" class="col-sm-2 control-label">工作地点：</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control logininput"  name="uworkspace" id="uworkspace">
+    </div>
+  </div>
+    <div class="form-group">
+    <label for="upoint" class="col-sm-2 control-label">积分：</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control logininput"  name="upoint" id="upoint">
+    </div>
+  </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" style="background-color: darkred" class="btn btn-primary loginsubmit">添加</button>
+    </div>
+  </div>
+</form>
+</div>
+    <script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+    <script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+    <script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+    <script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+    <script th:src="@{/bootstrap/dialog/layer.js}"></script>
+    <script th:src="@{/bootstrap/dialog.js}"></script>
+    <script th:src="@{/bootstrap/custom.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+</body>
+</html>

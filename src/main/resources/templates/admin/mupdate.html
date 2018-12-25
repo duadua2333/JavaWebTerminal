@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color:darkred;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form method="POST" id="form" class="form-horizontal" action="/admin/section/mupdate">
+            <div id="form-group">
+                <label>版块名:</label>
+                <input type="text" name="id"  style="display:none" th:value="${mainSection.getMsid()}">
+                <input type="text" name="name" class="form-control " th:value="${mainSection.getMsname()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>板块介绍:</label>
+                <input type="text" name="msprofile" class="form-control" th:value="${mainSection.getMsprofile()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                  <label>版主id:</label>
+                  <input type="text" name="mid" class="form-control" th:value="${mainSection.getMsmasterid()}"><br>
+            </div>
+            <input type="submit" value="提交" style="background-color: darkred" class="btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+</body>
+</html>

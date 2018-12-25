@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>bbs.com</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/lub.css}" rel="stylesheet" />
+    <!-- 	<link rel="stylesheet" type="text/css" href="D:/wamp/www/blog/Public/css/party/uploadify.css"> -->
+    <style type="text/css">
+        body{
+            background-color:rgb(239,239,244);
+        }
+        .bbs_bar{
+            background-color:darkred;
+        }
+        .bs-callout {
+            padding: 20px;
+            margin:  0;
+            border: 1px solid #eee;
+            border-left-width: 5px;
+            border-radius: 3px;
+        }
+        .bs-callout h4 {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .bs-callout p:last-child {
+            margin-bottom: 0;
+        }
+        .bs-callout code {
+            border-radius: 3px;
+        }
+        .bs-callout+.bs-callout {
+            margin-top: -5px;
+        }
+        .bs-callout-default {
+            border-top-color: darkred;
+            border-top-width: 3px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+        .bs-callout-default h4 {
+            color: darkred;
+        }
+        .bs-callout-primary {
+            border-top-color: darkred;
+            border-top-width: 3px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+        .bs-callout-primary h4 {
+            color: darkred;
+        }
+        .bs-callout-success {
+            border-top-color: darkred;
+            border-top-width: 3px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+        .bs-callout-success h4 {
+            color: darkred;
+        }
+        .bs-callout-danger {
+            border-top-color: darkred;
+            border-top-width: 3px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+        .bs-callout-danger h4 {
+            color: darkred;
+        }
+        .bs-callout-warning {
+            border-top-color: darkred;
+            border-top-width: 3px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+        .bs-callout-warning h4 {
+            color: darkred;
+        }
+        .bs-callout-info { /* 左侧竖线颜色*/
+            border-top-color: darkred;
+            border-top-width: 3px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 5px;
+        }
+        .bs-callout-info h4 {/*贴子标题颜色*/
+            color: darkred;
+        }
+        .bbs_bar {
+            height: 50px;
+        }
+        .bbs_bar3{
+            color:#aaa;
+            padding: 10px 0 0 30px;
+        }
+        .bbs_bar4{
+            color:#aaa;
+            padding: 10px 0 0 0px;
+        }
+        .bbs_bar1{
+            color: white;
+            font-size: 18px;
+            padding:15px 0 0 0px;
+        }
+        .bbs_bar2{
+            color:white;
+            padding: 17px 0 0 30px;
+        }
+        *{margin:0;padding:0;}
+        #leftMenu ul{width:100px;position:absolute;list-style:none;background-color: white; }
+        #leftMenu li{
+            width:100px;position:relative;z-index:1; height: 32px;width: 100px;text-align: center;
+            padding-top: 5px;
+        }
+        #leftMenu li>ul{left: 100px;top: 0;display: none;}
+        #leftMenu li>a {color: #909090; text-decoration:none; }
+        #leftMenu li>a:link {color: #909090; text-decoration:none;}
+        #leftMenu li:hover>ul{display: block;}
+        #leftMenu li:hover{background-color: #E1534A;}
+        #leftMenu li:hover>a{ color: white;}
+        .container1{
+            margin-top: 10px;
+        }
+        .bbs_narbar{
+            margin-left:120px;
+            width: 72.5%;
+            background-color: white;
+            position:relative;z-index:0;
+        }
+        .bbs_tiezi{
+            margin-top:0px;
+            margin-left:0;
+            margin-right: 0px;
+            background-color: white;
+
+        }
+        .bbs_see{
+            float: right;
+        }
+        .bbs_commit{
+            margin: 0 0 0 20px;
+        }
+        .bbs_author{
+            margin: 0 0 0 20px;color: #E1534A;
+        }
+        .bbs_zhiding{
+            float: right;
+            color:  #E1534A;
+            font-size: 20px;
+        }
+        .bbs_des{
+            font-size: 12px;color: #808080;
+            margin: 8px 0 8px 0;
+        }
+        .fenye{
+            margin: 0 0 0 300px;
+        }
+        .banzhu{
+            float: right;
+            width: 150px;
+        }
+        .banzhu1 p{
+            width: 120px;
+        }
+        .anniuzhu{
+            margin-left: 25px;
+        }
+        .qita{
+            position:relative;z-index:0;
+            margin: 0 0px 0px 40px;
+            width: 86%;
+        }
+        .bbs_tiezia:link {text-decoration:none;}
+
+
+    </style>
+
+</head>
+<body>
+<!-- 这里写登陆行 -->
+<div class="row bbs_bar">
+    <div class="col-md-1 col-md-offset-1 bbs_bar1">Daniel Wu BBS</div>
+    <div class="col-md-1 bbs_bar2">欢迎~<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span> </div>
+    <div class="col-md-1 col-md-offset-7 bbs_bar3" th:unless="${usernow}"><a class="a1" href="/user/login" target="view_window">登录</a></div>
+    <div class="col-md-1 bbs_bar4"><a class="a1" href="/user/sign" target="view_window"th:unless="${usernow}">注册</a></div>
+    <div class="col-md-2 col-md-offset-8 div_1" th:if="usernow">
+        <div th:if="${usernow}" class="dropdown">
+            <button  th:text="${usernow.getUname()}" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="/userCenter/person" target="view_blank">个人中心</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/user/login" >退出登陆</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 结束登陆行 -->
+<div class="container container1">
+    <!-- 在这里写板块分类 -->
+    <div id="leftMenu" >
+
+        <ul >
+            <li th:each="MainSection : ${mainSectionList}" ><a th:text="${MainSection.msname}"></a>
+                <ul >
+                    <li th:each="Section : ${SectionList}" th:if="${Section.msid==MainSection.msid}" ><a th:text="${Section.sname}" th:href="@{'/main/question/'+${Section.getSid()}}"></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- 结束板块分类 -->
+    <!-- 这里写导航栏 -->
+
+    <nav class="navbar navbar-default bbs_narbar">
+        <div class="main">
+            <a href=""><img src="https://github.com/rzzcl/rzzcl.github.io/blob/master/QQ%E5%9B%BE%E7%89%8720181220220205.png?raw=true" /></a>
+            <a href=""><img src="https://github.com/rzzcl/rzzcl.github.io/blob/master/QQ%E5%9B%BE%E7%89%8720181220220744.png?raw=true"/></a>
+            <a href=""><img src="https://github.com/rzzcl/rzzcl.github.io/blob/master/top1.jpg?raw=true" /></a>
+            <a href=""><img src="https://github.com/rzzcl/rzzcl.github.io/blob/master/QQ%E5%9B%BE%E7%89%8720181220221240.png?raw=true" /></a>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">板块</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/main/topic/1">帖子</a></li>
+                    <li class="active"><a href="/main/question/1">问答 <span class="sr-only">(current)</span></a></li>
+                    <li><a href="/main/demand/1">需求</a></li>
+                    <li><a href="/main/state/1">精品</a></li>
+
+                </ul>
+                <!--<form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">查找</button>
+                </form>-->
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- 结束导航栏 -->
+    <!-- 这里写，默认要展示的帖子样式 -->
+    <!-- 这是帖子的样式 -->
+    <div class="row tiezirow">
+        <div class="qita">
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table table-striped table-bordered table-hover tablemain" id="dataTables-example">
+                    <thead><tr><th></th></tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="questions : ${QuestionList}" th:if="${questions.isQtop()}"  th:unless="${questions.getQsid()!=section.getSid()}"><td >
+                        <a  th:href="@{'/tdqdetail/questiondetail/'+${questions.getQid()}}" class="bbs_tiezia">
+                            <div class="  bbs_tiezi bs-callout bs-callout-info" >
+                                 <span th:if="${questions.isQtop()}" class="glyphicon glyphicon-arrow-up bbs_zhiding" aria-hidden="true"></span><!--置顶-->
+                                    <span th:if="${questions.isQhot()}" class="glyphicon glyphicon-fire bbs_zhiding" aria-hidden="true"></span><!--热门-->
+                                    <span th:if="${questions.isQstate()}" class="glyphicon glyphicon-star bbs_zhiding" aria-hidden="true"></span></p><!--精品-->
+                                <!-- 帖子标题 -->
+                                <h4 th:text="${questions.getQname()}"></h4>
+                                <!-- 帖子简介 -->
+                                <p class="bbs_des" th:utext="${questions.getHtmlcontent()}"></p>
+                                <div class="bbs_see"> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span th:text="${questions.getQlikecount()}"></span><!--点赞量-->
+                                <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span th:text="${questions.getQreplycount()}"></span><!--回复量-->
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span th:text="${questions.getQclickcount()}"></span></div><!--点击量-->
+                                                               <!-- 帖子时间 --><!-- 帖子作者 -->
+                                <p><span th:text="${questions.getQtime()}"></span><span class="bbs_author"th:each="userlist:${UserList}" th:if="${userlist.getUid()==questions.getQuid()}" th:text="${userlist.getUname()}"></span>
+                            </div></a>
+                    </td></tr>
+
+                    <tr th:each="questions : ${QuestionList}" th:unless="${questions.isQtop()}"  th:if="${questions.getQsid()==section.getSid()}"><td >
+                        <a  th:href="@{'/tdqdetail/questiondetail/'+${questions.getQsid()}}" class="bbs_tiezia">
+                            <div class="  bbs_tiezi bs-callout bs-callout-info" >
+                               <span th:if="${questions.isQtop()}" class="glyphicon glyphicon-arrow-up bbs_zhiding" aria-hidden="true"></span><!--置顶-->
+                                    <span th:if="${questions.isQhot()}" class="glyphicon glyphicon-fire bbs_zhiding" aria-hidden="true"></span><!--热门-->
+                                    <span th:if="${questions.isQstate()}" class="glyphicon glyphicon-star bbs_zhiding" aria-hidden="true"></span></p><!--精品-->
+                                <!-- 帖子标题 -->
+                                <h4 th:text="${questions.getQname()}"></h4>
+                                <!-- 帖子简介 -->
+                                <p class="bbs_des" th:utext="${questions.getHtmlcontent()}"></p>
+                                <div class="bbs_see">  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span th:text="${questions.getQlikecount()}"></span><!--点赞量-->
+                                <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span th:text="${questions.getQreplycount()}"></span><!--回复量-->
+                               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span th:text="${questions.getQclickcount()}"></span></div><!--点击量-->
+                                <!-- 帖子时间 --><!-- 帖子作者 -->
+                                <p><span th:text="${questions.getQtime()}"></span><span class="bbs_author"th:each="userlist:${UserList}" th:if="${userlist.getUid()==questions.getQuid()}" th:text="${userlist.getUname()}"></span>
+                            </div></a>
+                    </td></tr>
+                    <!--<tr><td>
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-info bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                            <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                                <span class="glyphicon glyphicon-fire bbs_zhiding" aria-hidden="true"></span></p>
+                            <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是热门帖子（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </tr></td>
+                    <tr><td>
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-info bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-star bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是精品帖子（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+                    <tr><td>
+                <!-- 这是问答 -->
+                    <!--
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-warning bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-pushpin bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是置顶问答（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+                    <tr><td>
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-warning bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-fire bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是热门问答（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+                    <tr><td>
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-warning bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-star bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是精品问答（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+                    <tr><td>
+                <!-- 这是需求 -->
+                    <!--
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-danger bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-pushpin bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是置顶需求（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+                    <tr><td>
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-danger bbs_tiezi" >
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-fire bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是热门需求（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+                    <tr><td>
+                <a href="#" class="bbs_tiezia">
+                    <div class="bs-callout bs-callout-danger bbs_tiezi" id="callout-helper-bg-accessibility">
+                        <!-- 帖子时间 --><!-- 帖子作者 -->
+                    <!--
+                        <p><span>2018.9.01 11.21</span><span class="bbs_author">不爱洗头</span>
+                            <span class="glyphicon glyphicon-star bbs_zhiding" aria-hidden="true"></span></p>
+                        <!-- 帖子标题 -->
+                    <!--
+                        <h4>我是精品需求（返回对象被包含在result中）</h4>
+                        <!-- 帖子简介 -->
+                    <!--
+                        <p class="bbs_des">公司人员给我在AWS上建了个Ubuntu虚拟机和一个外部IP，我把代码push到这个虚拟机上，可以成功运行，然后输入外部ip的时候，显示的是文件结构。。</p>
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                        <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                        <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>
+                    </div>
+                </a>
+                    </td></tr>
+            -->
+                    </tbody>
+                </table>
+                <!-- 结束帖子样式 -->
+                <!-- 分页 -->
+
+            </div></div>
+        <!-- 结束分页 -->
+        <!--<div class="col-md-2">
+            <!-- 这里写版主信息以及操作按钮 -->
+            <!--<div class="thumbnail banzhu">
+                <img src="http://img3m3.ddimg.cn/55/24/25247233-1_w_6.jpg" alt="image/book.jpg">
+                <div class="caption banzhu1">
+                    <p>板块介绍。。。。</p>
+                    <p class="bookAuthor"><a href="#"></a>版主信可以连接到版主页面</p>
+                </div>
+            </div>
+            <!-- 这里结束版主信息
+        </div>-->
+        <div class="btn-group anniuzhu" role="group" style="position: absolute;left: 950px;top: 215px;" aria-label="...">
+            <button type="button" class="btn btn-default"><a href="/main/addtopic" target="view_window">发帖</a></button>
+            <button type="button" class="btn btn-default"><a href="/main/adddemand" target="view_window">需求</a></button>
+            <button type="button" class="btn btn-default"><a href="/main/addquestion" target="view_window">问答</a></button>
+        </div>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js}"></script>
+<script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+<script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+<script th:src="@{/js/lunbo.js}"></script>
+<script th:src="@{/js/jquery-1.11.3.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>
+<!-- CUSTOM SCRIPTS -->
+<script th:src="@{/bootstrap/custom.js}"></script>
+</body>
+</html>

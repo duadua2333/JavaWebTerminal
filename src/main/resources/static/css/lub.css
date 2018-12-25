@@ -1,0 +1,40 @@
+/*************初始化************/
+*{margin:0;padding: 0;border: none;list-style: none}
+/*********轮播左右居中*************/
+.main{
+    width: 830px;
+    height: 150px;
+    margin: 0 auto;
+    position: relative;
+}
+.main a{
+    position: absolute;
+}
+.main a img{
+    width: 825px;
+    height:150px;
+}
+/***********左边小图标************/
+.main ul li.selected{
+    background: #f97157;
+}
+
+.main ul{
+    position: absolute;
+    z-index: 999;
+    top: 130px;
+    left: 10px;
+}
+
+.main ul li{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    float: left;
+    font-size: 2px;
+    background: #909090;
+    cursor: pointer;
+    text-align: center;
+}
+
+

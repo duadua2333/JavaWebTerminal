@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color: #31b0d5;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form method="POST" id="form" class="form-horizontal" action="/admin/question/updateQuestion">
+            <input type="text" name="qid"  style="display:none" th:value="${question.getQid()}">
+           <div id="form-group">
+                <label>问答名称名:</label>
+                <input type="text" name="qname" class="form-control " th:value="${question.getQname()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>一级分类id:</label>
+                <input type="text" name="qmsid" class="form-control" th:value="${question.getQmsid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>二级分类id：</label>
+                <input type="text" name="qsid" class="form-control" th:value="${question.getQsid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>作者id：</label>
+                <input type="text" name="quid" class="form-control" th:value="${question.getQuid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>问答内容：</label>
+                <input type="text" name="qcontents" class="form-control" th:value="${question.getQcontents()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>点击量：</label>
+                <input type="text" name="qclickcount" class="form-control" th:value="${question.getQclickcount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>回复量：</label>
+                <input type="text" name="qreplycount" class="form-control" th:value="${question.getQreplycount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>点赞量：</label>
+                <input type="text" name="qlikecount" class="form-control" th:value="${question.getQlikecount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>分数：</label>
+                <input type="text" name="qscore" class="form-control" th:value="${question.getQscore()}"><br>
+            </div>
+
+            <input type="submit" value="提交" style="background-color: darkred" class="btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 5%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color:darkred ;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+            
+        #add_bt{background-color:darkred;margin: 40px 0 0 0; }
+        .form3{margin: 20px 0 0 0 ;}
+        #md{height: 100px;}
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;" ></canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form methon="post" id="form" class="form-horizontal">
+            <h2><span id="title">发表新帖</span></h2>
+            <div id="form-group">
+                <label>帖子主题:</label>
+                <input type="text" name="tname" placeholder="请给你的帖子拟个标题吧" class="form-control "><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>帖子内容:</label>
+                <!--<input type="text" name="tcontents" class="form-control" ><br>-->
+                <textarea id="md" data-provide="markdown" data-hidden-buttons="cmdImage" placeholder="请填写帖子的详细内容"  name="tcontents" class="form-control "></textarea>
+            </div>
+            <div id="form-group form-inline form-3" class="form3">
+                <label>标签分类:</label>
+                <select name="sname" class="form-control fenlei1">
+                    <option  id="sname1" th:each="section : ${SectionList}" th:value="${section.sname}" th:text="${section.sname}">小说</option>
+                </select>
+            </div>
+            <input type="button" id="add_bt" value="登录" class="btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+<script type="text/javascript">
+    $("#add_bt").on('click', function(){
+        var tname = $("input:first").val();
+        var tcontents =$("#md").val();
+        tcontents = tcontents.replace(/\n|\r\n/g,"<br>");
+        var sname = $(":selected" ).val();
+        console.log(tname);
+        console.log(sname);
+        if(!tname){
+            dialog.error("名字不能为空");
+        }
+        if(!tcontents){
+            dialog.error("请先登录");
+        }
+        var url="/main/addtopicconfim";
+        var data={tname:tname,tcontents:tcontents,sname:sname};
+
+        $.post(url,data,function(result){
+            if (result=="1") {
+                dialog.success("成功","/main");
+            }
+        },"json");
+    });
+</script>
+</body>
+</html>

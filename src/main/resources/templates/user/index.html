@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>bbs.com</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-tabs ">
+        <li class="active"><a href="#" >用户管理</a></li>
+        <li><a href="#">板块管理</a></li>
+        <li><a href="#" >帖子管理</a></li>
+        <li><a href="#">问答管理</a></li>
+        <li><a href="#">需求管理</a></li>
+        <li><a href="#">关注管理</a></li>
+        <li><a href="#">管理员管理</a></li>
+        <li><a href="#">退出登录</a></li>
+    </ul>
+</div>
+<div class="container">
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-md-4">
+            <input type="button" value="添加" class="btn btn-primary" id="button-add">
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            用户列表
+        </div>
+        <div class="panel-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                    <tr>
+                        <th>用户id</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+                        <th>电话</th>
+                        <th>邮箱</th>
+                        <th>用户工作</th>
+                        <th>工作地点</th>
+                        <th>性别</th>
+                        <th>积分</th>
+                        <th>是否为版主</th>
+                        <th>头像</th>
+                        <th>修改信息</th>
+                        <th>删除</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${userList}">
+                        <td th:text="${user.getUid()}">1</td>
+                        <td th:text="${user.getUname()}">姣姣爱哦</td>
+                        <td th:text="${user.getUpassword()}">123</td>
+                        <td th:text="${user.getUbirthday()}">1225732</td>
+                        <td th:text="${user.getUbirthday()}">2138572</td>
+                        <td th:text="${user.getUjob()}">石佛寺</td>
+                        <td th:text="${user.getWorkspace()}">所发生离开的复苏</td>
+                        <td th:text="${user.getUsex()}">男</td>
+                        <td th:text="${user.getPoint()}">0</td>
+                        <td th:text="${user.isUismsmaster()}">是</td>
+                        <td th:text="${user.getAvatar()}">头像</td>
+                        <td><a href="#">修改信息</a></td>
+                        <td><a href="#">删除</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+<script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>
+<!-- CUSTOM SCRIPTS -->
+<script th:src="@{/bootstrap/custom.js}"></script>
+</body>
+</html>

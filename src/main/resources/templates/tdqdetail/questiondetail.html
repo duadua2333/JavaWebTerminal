@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta http-equiv="pragma" content="no-cache" >
+	<meta charset="UTF-8">
+	<title>bbs.com</title>
+	<link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+<style type="text/css">
+	body{
+		background-color:rgb(239,239,244);
+	}
+	.bbs_bar{
+		background-color:darkred;
+	}
+	.bbs_bar {
+		height: 50px;
+	}
+    .bbs_bar3{
+        color:#aaa;
+        padding: 10px 0 0 30px;
+    }
+    .bbs_bar4{
+        color:#aaa;
+        padding: 10px 0 0 0px;
+    }
+    .bbs_bar1{
+        color: white;
+        font-size: 18px;
+        padding:15px 0 0 0px;
+    }
+    .bbs_bar2{
+        color:white;
+        padding: 17px 0 0 30px;
+    }
+	.div_1{
+		margin: 2px 100px 0 700px;
+	}
+	.tiezi1{
+		margin: 5px 20% 0 20%;
+	}
+	.tieziimg{
+		width: 100px;
+		height: 100px;
+	}
+		.bbs_author{
+		margin: 0 0 0 20px;color: #E1534A;
+	}
+		.bbs_tiezi{
+		margin-top:0px;
+		margin-left:120px;
+		margin-right: 0px;
+		background-color: white;
+
+	}
+	.bbs_see{
+		float: right;
+	}
+		.bbs_commit{
+		margin: 0 0 0 20px;
+	}
+	.bbs_author{
+		margin: 0 0 0 20px;color: #E1534A;
+	}
+	.bbs_zhiding{
+		float: right;
+		color:  #E1534A;
+		font-size: 20px;
+	}
+	.bbs_des{
+		font-size: 12px;color: #808080;
+		margin: 8px 0 8px 0;
+	}
+	.teizi2{
+		background-color: white;
+		margin:  5px 30% 0 0 ;
+	}
+	.tiezineirong{
+		height: 120px;
+	}
+	.btn-pinglun{
+		margin: 0 0 5px 400px; 
+	}
+	.btn-fabaopinglun{
+		margin-left: 500px;
+	}
+	.pingluntext{
+		width: 600px;
+	}
+	.tiezi3{
+		margin: 5px 30% 0 0;
+	}
+	.pagesjfs{
+		margin-left: 600px;
+	}
+    .a1{
+        color: white;
+    }
+</style>
+
+</head>
+<body>
+<!-- 这里写登陆行 -->
+<div class="row bbs_bar">
+    <div class="col-md-1 col-md-offset-1 bbs_bar1">Daniel Wu BBS</div>
+    <div class="col-md-1 bbs_bar2">欢迎~<span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"></span>   </div>
+    <div class="col-md-1 col-md-offset-7 bbs_bar3" th:unless="${usernow}"><a class="a1" href="/user/login" target="view_window">登录</a></div>
+    <div class="col-md-1 bbs_bar4"><a class="a1" href="/user/sign" target="view_window"th:unless="${usernow}">注册</a></div>
+    <div class="col-md-2 col-md-offset-8 div_1" th:if="usernow">
+        <div th:if="${usernow}" class="dropdown">
+            <button  th:text="${usernow.getUname()}" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="/userCenter/person" target="view_blank">个人中心</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/user/login" >退出登陆</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 结束登陆行 -->
+<div class="container  tiezi1">
+    <div class="media teizi2">
+        <div class="media-left">
+            <a href="#">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545498448209&di=08fb8a301ef17e0dea97a4d18f40d6b8&imgtype=0&src=http%3A%2F%2Fm.vstou.com%2Fupload%2Fimage%2F78%2F201511%2F1448238930844839.jpg" class="tieziimg">
+            </a>
+        </div>
+        <div class="media-body">
+            <p><span th:text="${question.getQtime()}"></span><span class="bbs_author" th:each="userList:${userlist}" th:if="${userList.getUid()==question.getQuid()}" th:text="${userList.getUname()}"></span>
+            <h4 class="media-heading" th:text="${question.getQname()}"></h4>
+            <div  class="tiezineirong" th:utext="${question.getHtmlcontent()}"></div>
+            <a th:href="@{'/tdqdetail/likequestion/'+${question.getQid()}}"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span th:text="${question.getQlikecount()}"></span></a>
+            <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span th:text="${question.getQreplycount()}"></span>
+            <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span th:text="${question.getQclickcount()}"></span></div>
+        </div>
+    </div>
+    <div role="separator" class="divider"></div><table class="table table-striped table-bordered table-hover tablemain" id="dataTables-example">
+    <thead><tr><th></th></tr>
+    </thead>
+    <tbody>
+    <tr   th:each="qcomments :${question.getQreplys()}"><td >
+        <div class="media teizi2">
+            <div class="media-left">
+                <a href="#">
+                    <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545498448209&di=08fb8a301ef17e0dea97a4d18f40d6b8&imgtype=0&src=http%3A%2F%2Fm.vstou.com%2Fupload%2Fimage%2F78%2F201511%2F1448238930844839.jpg" class="tieziimg">
+                </a>
+            </div>
+            <div class="media-body" >
+                <p><span th:text="${qcomments.getRqtime()}"></span><span class="bbs_author" th:each="userList:${userlist}" th:if="${userList.getUid()==qcomments.getUid()}" th:text="${userList.getUname()}"></span>
+                <div  class="tiezineirong" th:text="${qcomments.getRqcontent()}"></div>
+                <!--<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span>10</span>
+                <span class="glyphicon glyphicon-comment bbs_commit" aria-hidden="true"></span><span>20</span>
+                <div class="bbs_see"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><span>1126</span></div>-->
+                <!--<button class="btn btn-xs btn-primary btn-pinglun" type="button" data-toggle="collapse" th:attr="data-target=${'.abc'+qcomments.getRqid()},aria-controls=${'abc'+qcomments.getRqid()}"  aria-expanded="false" >
+                    隐藏/展开
+                </button>
+                <a th:href="@{'/tdqdetail/questionreplydetail/'+${qcomments.getRqid()}}">点击评论</a>
+                <div class="collapse collapseExample"  th:attr="class='abc'+${qcomments.getRqid()}">
+                    <form >
+                        <!--<input type="text" name="rqid" id="rqid" class="form-control ">-->
+                        <!--<textarea class="form-control pingluntext" id="ctcontents" rows="3"></textarea>
+                        <input type="submit"  id="submitComment"name="发表" class="btn btn-xs btn-primary btn-fabaopinglun">
+                    </form>
+                    <div  class="zhankaipinglun" th:each="comments:${qcomments.getQcomment()}">
+                        <span class="yonghuming"  th:each="userList:${userlist}" th:if="${userList.getUid()==comments.getUid()}" th:text="${userList.getUname()}+':'" ></span>
+                        <span class="pinglun"  th:text="${comments.getCqcontents()}"></span><br>
+                        <!--<span class="yonghuming">不爱洗头：</span><span class="pinglun">我觉的很有道理</span><br>
+                        <span class="yonghuming">不爱洗头：</span><span class="pinglun">我觉的很有道理</span><br>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div></td></tr>
+    </tbody>
+</table>
+<div class="pagesjfs">
+<nav aria-label="Page navigation ">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+<!-- 评论的逻辑 -->
+<div class="tiezi3">
+  <div class="panel panel-default">
+  <div class="panel-heading">我要发表回复</div>
+  <div class="panel-body">
+  <form methon="post" id="replytopic">
+      <!--<input type="text" name="tid" id="tid" class="form-control "><br>-->
+    <textarea class="form-control pingluntext" placeholder="看帖需留言~" id="rtcontents" rows="3"></textarea>
+    <input type="submit" id="submitReply"  value="回复" class="btn btn-xs btn-primary btn-fabaopinglun">
+    </form>
+  </div>
+</div>
+</div>
+</div><!-- 结束了帖子及会贴 -->
+<!-- 结束分页 -->
+ <script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js}"></script>
+<!-- jquery要在自己写的js文件之前引入 -->
+<script type="text/javascript">
+    $("#add_bt").on('click',function () {
+        var tname = $("input:first").val();
+    })
+    $("#submitReply").on('click', function(){
+        var rtcontents =$("#rtcontents").val();
+        console.log(rtcontents);
+        if(!rtcontents){
+            dialog.error("内容不能为空");
+        }
+        var url="/tdqdetail/questiondetail/fabiao";
+        var data={rtcontents:rtcontents};
+
+        $.post(url,data,function(result){
+            if (result=="1") {
+                dialog.success("成功","index");
+            }if(result=="0"){
+                dialog.error("请先登录");
+            }
+        },"json");
+    });
+
+    $("#submitComment").on('click', function(){
+       // var rqid = $("#rqid").val();
+        var ctcontents =$("#ctcontents").val();
+        console.log(rtcontents);
+        if(!ctcontents){
+            dialog.error("内容不能为空");
+        }
+        var url="/tdqdetail/questiondetail/fabiao/comment";
+        var data={ctcontents:ctcontents};
+
+        $.post(url,data,function(result){
+            if (result=="1") {
+                dialog.success("成功","topicdetail");
+            }if(result=="0"){
+                dialog.error("请先登录");
+            }
+        },"json");
+    });
+    // 获取评论列表
+
+   /* function getCommnet(tid) {
+        $.ajax({
+            url: '/tdqdetail',
+            type: 'GET',
+            data:{"tid":tid},
+
+            success: function(){
+                dialog.success("成功","index");
+
+            },
+            error : function() {
+                toastr.error("error!");
+            }
+        });
+    }
+
+    // 提交评论
+    $("#submitReply").on("click","#submitReply", function () {
+        // 获取 CSRF Token
+
+        var data={rtcontents:rtcontents};
+        $.ajax({
+            url: '/tdqdetail',
+            type: 'POST',
+            data:{"tid":tid, "replyContent":$('#replyContent').val()},
+            beforeSend: function(request) {
+                request.setRequestHeader(data); // 添加  CSRF Token
+            },
+            success: function(data){
+                if (data.success) {
+                    // 清空评论框
+                    $('#replyContent').val('');
+                    // 获取评论列表
+                    getCommnet(tid);
+                } else {
+                    toastr.error(data.message);
+                }
+            },
+            error : function() {
+                toastr.error("error!");
+            }
+        });
+    });
+    getCommnet(tid);*/
+</script>
+</body>
+</html>

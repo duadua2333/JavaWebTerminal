@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>bbs.com</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-tabs ">
+        <li><a href="/admin/index" >用户管理</a></li>
+        <li><a href="/admin/section">板块管理</a></li>
+        <li><a href="/admin/topic" >帖子管理</a></li>
+        <li><a href="/admin/question">问答管理</a></li>
+        <li><a href="/admin/demand">需求管理</a></li>
+        <li class="active"><a href="/admin/follow">关注管理</a></li>
+        <li><a href="/admin/supermaster">管理员管理</a></li>
+        <li><a href="/admin/outlogin">退出登录</a></li>
+    </ul>
+</div>
+<div class="container">
+    <div class="row" style="margin-bottom: 15px">
+
+    </div>
+
+
+    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+        <tr>
+            <th>关注id</th>
+            <th>关注人id</th>
+            <th>被关注人id</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="follow : ${followList}">
+            <td th:text="${follow.getFid()}"></td>
+            <td th:text="${follow.getUid1()}">姣姣爱哦</td>
+            <td th:text="${follow.getUid2()}">123</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+<script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+    $(".deleteid").on('click', function(){
+        var id = $(this).attr("name");
+        var url="/admin/follow/delete";
+        var data={fid:id};
+        $.post(url,data,function(result){
+            if (result=="0") {
+                dialog.error("删除失败");
+            }
+            if (result=="1") {
+                dialog.success("删除成功","follow");
+            }
+        },"json");
+    });
+</script>
+
+<!-- CUSTOM SCRIPTS -->
+<script th:src="@{/bootstrap/custom.js}"></script>
+</body>
+</html>

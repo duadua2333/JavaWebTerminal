@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color: #31b0d5;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form method="POST" id="form" class="form-horizontal" action="/admin/demand/updateDemand">
+             <input type="text" name="did"  style="display:none" th:value="${demand.getDid()}">
+            <div id="form-group">
+                <label>需求名称名:</label>
+                   <input type="text" name="dname" class="form-control " th:value="${demand.getDname()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>一级分类id:</label>
+                <input type="text" name="dmsid" class="form-control" th:value="${demand.getDmsid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>二级分类id：</label>
+                <input type="text" name="dsid" class="form-control" th:value="${demand.getDsid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>作者id：</label>
+                <input type="text" name="duid" class="form-control" th:value="${demand.getDuid()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>需求内容：</label>
+                <input type="text" name="dcontents" class="form-control" th:value="${demand.getDcontents()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>点击量：</label>
+                <input type="text" name="dclickcount" class="form-control" th:value="${demand.getDclickcount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>回复量：</label>
+                <input type="text" name="dreplycount" class="form-control" th:value="${demand.getDreplycount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>点赞量：</label>
+                <input type="text" name="dlikecount" class="form-control" th:value="${demand.getDlikecount()}"><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>分数：</label>
+                <input type="text" name="dscore" class="form-control" th:value="${demand.getDscore()}"><br>
+            </div>
+
+
+            <input type="submit" value="提交" style="background-color: darkred" class="btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+
+</body>
+</html>

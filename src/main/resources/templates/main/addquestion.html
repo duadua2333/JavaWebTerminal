@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/main.css}" rel="stylesheet">
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 5%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color:darkred ;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+            
+        #add_bt{background-color:darkred;margin: 40px 0 0 0; }
+        .form3{margin: 20px 0 0 0 ;}
+        #md{height: 100px;}
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;" ></canvas>
+<div class="container">
+    <div class="row" id="login">
+        <form methon="post" id="form" class="form-horizontal">
+            <h2><span id="title">提问</span></h2>
+            <div id="form-group">
+                <label>标题:</label>
+                <input type="text" placeholder="请给你的问题写个标题" name="qname" class="form-control "><br>
+            </div>
+            <div id="form-group form-4">
+                <label>分值:</label>
+                <input type="text" name="qscore" class="form-control "><br>
+            </div>
+            <div id="form-group form-inline">
+                <label>问答内容:</label>
+                <!--<input type="text" name="tcontents" class="form-control" ><br>-->
+                <textarea id="md" data-provide="markdown" data-hidden-buttons="cmdImage" placeholder="请详细说明你的问题，以便得到更好地回答"
+                          name="tcontents" class="form-control "></textarea>
+            </div>
+            <div id="form-group form-inline form-3" class="form3">
+                <label>标签分类:</label>
+                <select name="sname" class="form-control fenlei1">
+                    <option   th:each="section : ${SectionList}" th:value="${section.sname}" th:text="${section.sname}" class="form-control fenlei2" >小说</option>
+                </select>
+            </div>
+
+            <input type="button" id="add_bt" value="发表" class="b1 btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+<script type="text/javascript">
+    $("#add_bt").on('click', function(){
+        var qname = $("input:first").val();
+        var qcontents =$("#md").val();
+        qcontents = qcontents.replace(/\n|\r\n/g,"<br>");
+        var sname = $(":selected" ).val();
+        var qscore =$("input:eq(1)").val();
+
+        if(!qname){
+            dialog.error("名字不能为空");
+        }
+        if(!qcontents){
+            dialog.error("内容不能为空");
+        }
+        var url="/main/addquestionconfim";
+        var data={qname:qname,qscore:qscore,qcontents:qcontents,sname:sname};
+
+        $.post(url,data,function(result){
+            if (result=="1") {
+                dialog.success("成功","/main");
+            }
+        },"json");
+    });
+</script>
+</body>
+</html>

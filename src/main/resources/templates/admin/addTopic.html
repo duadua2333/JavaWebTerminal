@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>添加帖子</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <style type="text/css">
+        .loginform{
+            margin:5% 25% 0 25%;
+        }
+        .logininput{
+            height:43px;
+        }
+        .loginsubmit{
+            width:450px;
+            height:43px;
+        }
+        canvas{
+            position: absolute;
+            display: block;
+            left:0;
+            top:0;
+            background: white;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="z-index:-2;position:absolute;">
+    本浏览器不支持canvas
+</canvas>
+<div class="container">
+    <form method="POST" class="form-horizontal loginform" action="/admin/topic/add/commentTopic" >
+        <div class="form-group">
+            <label for="tid" class="col-sm-2 control-label">帖子id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput"  name="tid" id="tid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tmsid" class="col-sm-2 control-label">一级分类id：</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput" name="tmsid" id="tmsid">
+            </div>
+        </div>
+      <div class="form-group">
+            <label for="tsid" class="col-sm-2 control-label">二级分类id</label>
+            <div class="col-sm-10">
+                <input type="phone" class="form-control logininput"  name="tsid" id="tsid">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tuid" class="col-sm-2 control-label">作者id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput"  name="tuid" id="tuid">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="tname" class="col-sm-2 control-label">帖子名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput" name="tname" id="tname">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tcontents" class="col-sm-2 control-label">帖子内容</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput" name="tcontents" id="tcontents" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">点击量</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput"  name="tclickcount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="treplycount" class="col-sm-2 control-label">回复量</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput"  name="treplycount" id="treplycount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">点赞量</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control logininput"  name="tlikecount">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" style="background-color: darkred" class="btn btn-primary loginsubmit">添加</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+<script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script th:src="@{/bootstrap/custom.js}"></script>
+<script th:src="@{/js/background.js}"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/main.css}" rel="stylesheet">
+    <style type="text/css">
+        #login{
+            float: none;
+            margin-top: 15%;
+            margin-left: 30%;
+            margin-right: 30%;
+        }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color: darkred;
+        }
+        #login_bt{
+            height: 38px;
+            margin-top: 12px;
+            font-size:18px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row" id="login">
+        <form method="POST" id="form" class="form-horizontal" action="/userCenter/finalupdatedemand">
+            <input type="text" name="demandname" class="form-control" th:value="${demand.getDname()}"><br>
+            <h2><span id="title">请修改</span></h2>
+            <div id="form-group">
+                <span th:text="${demand.getDname()}"></span>
+            </div>
+            <div id="form-group form-inline">
+                <label>更新内容：</label>
+                <input type="text" name="context" class="form-control" th:value="${demand.getDcontents()}"><br>
+            </div>
+            <input type="submit"  value="确认" class="b1 btn btn-primary btn-group-justified">
+        </form>
+    </div>
+</div>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/bootstrap.min.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ncubbs.iml" filepath="$PROJECT_DIR$/.idea/modules/ncubbs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ncubbs_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ncubbs_main.iml" group="ncubbs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ncubbs_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ncubbs_test.iml" group="ncubbs" />
+    </modules>
+  </component>
+</project>

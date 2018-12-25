@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>user's sign</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/main.css}" rel="stylesheet">
+   <style type="text/css">
+   .loginform{
+   margin:3% 40% 0 20%;
+   }
+   .logininput{
+   height:43px;
+   }
+   .loginsubmit{
+   width:500px;
+   height:43px;
+   }
+        #title{
+            display: block;
+            margin-bottom: 25px;
+            color:darkred;
+        }
+        .siginrabio{
+        padding: 0px 0 0px 100px;
+        }
+
+   </style>
+   </head>
+   <body>
+   <form class="form-horizontal loginform" action="/user/signconfim" method="post">
+    <h2 ><span id="title">用户注册</span></h2>
+     <div class="form-group">
+       <label for="inputEmail3" class="col-sm-2 control-label">姓名：</label>
+       <div class="col-sm-10">
+         <input name="name" class="form-control logininput" placeholder="username" >
+       </div>
+     </div>
+     <div class="form-group">
+       <label for="inputPassword3" class="col-sm-2 control-label">手机号：</label>
+       <div class="col-sm-10">
+         <input type="phone" class="form-control logininput" placeholder="phone" name="phone">
+     </div>
+     </div>
+     <div class="form-group">
+       <label for="inputPassword3" class="col-sm-2 control-label">密码：</label>
+       <div class="col-sm-10">
+         <input type="password" class="form-control logininput"  placeholder="Password" name="password">
+     </div>
+     </div>
+     <div class="form-group">
+       <label for="inputPassword3" class="col-sm-2 control-label">邮箱：</label>
+       <div class="col-sm-10">
+         <input type="email" class="form-control logininput" placeholder="email" name="email">
+       </div>
+     </div>
+     <div class="form-group">
+       <label for="inputPassword3" class="col-sm-2 control-label">用户工作：</label>
+       <div class="col-sm-10">
+           <input type="text" class="form-control logininput" placeholder="job" name="job">
+       </div>
+   </div>
+     <div class="form-group">
+       <label for="inputPassword3" class="col-sm-2 control-label">工作地点：</label>
+       <div class="col-sm-10">
+         <input type="text" class="form-control logininput" placeholder="workplace" name="workplace">
+       </div>
+     </div>
+       <div class="form-group">
+           <label for="inputPassword3" class="col-sm-2 control-label">生日：</label>
+           <div class="col-sm-10">
+               <input type="text" class="form-control logininput" placeholder="birthday" name="birthday">
+           </div>
+       </div>
+     <div class="form-group">
+       <label for="inputPassword3" class="col-sm-2 control-label">个性签名：</label>
+       <div class="col-sm-10">
+         <input type="text" class="form-control logininput" placeholder="remark" name="remark">
+       </div>
+     </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">头像：</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control logininput" placeholder="avatar" name="avatar">
+            </div>
+          </div>
+       <div class="form-group">
+           <label for="inputPassword3" class="col-sm-2 control-label">性别：</label>
+           <div class="col-sm-10">
+               <input type="text" class="form-control logininput" placeholder="sex" name="sex">
+           </div>
+       </div>
+     <div class="form-group">
+       <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="b1 btn btn-primary loginsubmit">注册</button>
+       </div>
+     </div>
+   </form>
+<script th:src="@{/bootstrap/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.b1{
+    background-color: darkred;
+}
+.a1{
+    color: white;
+}
+body{
+    background-color:rgb(239,239,244);
+}
+.bbs_bar{
+    background-color:darkred;
+    height: 50px;
+}
+.bbs_bar3{
+    color:#aaa;
+    padding: 10px 0 0 30px;
+}
+.bbs_bar4{
+    color:#aaa;
+    padding: 10px 0 0 0px;
+}
+.bbs_bar1{
+    color: white;
+    font-size: 18px;
+    padding:15px 0 0 0px;
+}
+.bbs_bar2{
+    color:white;
+    padding: 17px 0 0 30px;
+}

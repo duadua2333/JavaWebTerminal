@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="pragma" content="no-cache" >
+    <meta charset="UTF-8">
+    <title>bbs.com</title>
+    <link th:href="@{/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-bottom: 15px">
+    </div>
+
+
+    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <thead>
+        <tr>
+            <th>评论id</th>
+            <th>用户id</th>
+         <!--   <th>回复帖子人id</th>-->
+            <th>问答评论描述</th>
+            <th>时间</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="commentdemand : ${CommentDemandList}">
+            <td th:text="${commentdemand.getCdid()}"></td>
+            <td th:text="${commentdemand.getUid()}">姣姣爱哦</td>
+           <!-- <td th:text="${commentdemand.getRdid()}">姣姣爱哦</td>-->
+            <td th:text="${commentdemand.setCdcontents()}">123</td>
+            <td th:text="${commentdemand.getCdtime()}">1225732</td>
+            <td><a href="#" th:name="${commentdemand.getCdid()}" class="deleterdid">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script th:src="@{/bootstrap/jquery-1.10.2.js}"></script>
+<script th:src="@{/bootstrap/jquery.metisMenu.js}"></script>
+<script th:src="@{/bootstrap/dataTables/jquery.dataTables.js}"></script>
+<script th:src="@{/bootstrap/dataTables/dataTables.bootstrap.js}"></script>
+<script th:src="@{/bootstrap/dialog/layer.js}"></script>
+<script th:src="@{/bootstrap/dialog.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+    $(".deleterdid").on('click', function(){
+        var id = $(this).attr("name");
+        var url="/admin/demand/commentdemand/delete";
+        var data={rdid:id};
+        $.post(url,data,function(result){
+            if (result=="0") {
+                dialog.error("删除失败");
+            }
+            if (result=="1") {
+                dialog.success("删除成功");
+            }
+        },"json");
+    });
+</script>
+
+<!-- CUSTOM SCRIPTS -->
+<script th:src="@{/bootstrap/custom.js}"></script>
+</body>
+</html>
